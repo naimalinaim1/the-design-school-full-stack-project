@@ -1,8 +1,15 @@
 import useTitle from "../../hooks/useTitle";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
+import { AuthContent } from "../../provider/AuthProvider";
+import { useLocation, useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const AllClasses = () => {
   const [classes, setClasses] = useState([]);
+  const { user } = useContext(AuthContent);
+  const navigate = useNavigate();
+  const location = useLocation();
+
   useTitle("All Classes");
 
   useEffect(() => {
@@ -10,6 +17,38 @@ const AllClasses = () => {
       .then((res) => res.json())
       .then((data) => setClasses(data));
   }, []);
+
+  const handleSelectCourse = (id) => {
+    const email = user?.email;
+    if (email) {
+      const data = { email, classId: id };
+      fetch("http://localhost:5000/selectCourse", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify(data),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          if (data?.insertedId) {
+            Swal.fire("Good Job!", "Course selected successfully", "success");
+          }
+        });
+    } else {
+      Swal.fire({
+        title: "Please Login",
+        text: "Please login then select course",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Login",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          navigate("/login", { state: { from: location } });
+        }
+      });
+    }
+  };
 
   return (
     <div className="mt-6 mb-64">
@@ -33,7 +72,11 @@ const AllClasses = () => {
                 <p>Price: ${item?.price}</p>
               </div>
               <div className="card-actions mt-auto justify-end">
-                <button className="btn" disabled={item?.seats <= 0}>
+                <button
+                  onClick={() => handleSelectCourse(item?._id)}
+                  className="btn"
+                  disabled={item?.seats <= 0}
+                >
                   Select Course
                 </button>
               </div>
