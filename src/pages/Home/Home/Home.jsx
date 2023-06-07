@@ -1,13 +1,16 @@
 import useTitle from "../../../hooks/useTitle";
+import Banner from "../Banner/Banner";
+import Classes from "../Classes/Classes";
 
 const Home = () => {
   // change title
   useTitle("Home");
 
   return (
-    <div>
-      <h2>home</h2>
-    </div>
+    <>
+      <Banner />
+      <Classes />
+    </>
   );
 };
 
