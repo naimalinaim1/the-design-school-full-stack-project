@@ -19,10 +19,12 @@ const Header = () => {
       {user?.email ? (
         <>
           <li>
-            <ActiveLink to="/">Dashboard</ActiveLink>
+            <ActiveLink to="/dashboard/instructors">Dashboard</ActiveLink>
           </li>
           <li>
-            <ActiveLink onClick={userLogout}>Logout</ActiveLink>
+            <p className="cursor-pointer" onClick={userLogout}>
+              Logout
+            </p>
           </li>
           <li>
             <div className="avatar">

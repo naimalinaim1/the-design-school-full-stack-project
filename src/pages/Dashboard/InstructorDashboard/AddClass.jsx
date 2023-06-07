@@ -1,19 +1,37 @@
 // import { useState } from "react";
+import { useContext } from "react";
 import useTitle from "../../../hooks/useTitle";
 import { useForm } from "react-hook-form";
+import { AuthContent } from "../../../provider/AuthProvider";
+import Swal from "sweetalert2";
 
 const AddClass = () => {
   useTitle("Add a Class");
 
-  const user = {};
+  const { user } = useContext(AuthContent);
   const name = user?.displayName || "";
   const email = user?.email || "";
-  const { register, handleSubmit } = useForm();
+
+  const { register, handleSubmit, reset } = useForm();
 
   const onSubmit = (data) => {
     data.price = parseFloat(parseFloat(data.price).toFixed(2));
     data.seats = parseInt(data.seats);
-    console.log(data);
+    data.status = "pending";
+
+    // create a class
+    fetch("http://localhost:5000/classes", {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify(data),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data?.insertedId) {
+          reset();
+          Swal.fire("Good job!", "Class added successfully", "success");
+        }
+      });
   };
 
   return (
@@ -43,28 +61,28 @@ const AddClass = () => {
           />
         </div>
         <div>
-          <label htmlFor="name" className="block mb-2">
+          <label htmlFor="instructorName" className="block mb-2">
             Instructor Name
           </label>
           <input
             type="text"
-            id="name"
+            id="instructorName"
             defaultValue={name}
             readOnly
-            {...register("name", { required: true })}
+            {...register("instructorName", { required: true })}
             className="w-full border p-2 rounded"
           />
         </div>
         <div>
-          <label htmlFor="email" className="block mb-2">
+          <label htmlFor="instructorEmail" className="block mb-2">
             Instructor Email
           </label>
           <input
             type="email"
-            id="email"
-            defaultValue={email}
+            id="instructorEmail"
             readOnly
-            {...register("email", { required: true })}
+            defaultValue={email}
+            {...register("instructorEmail", { required: true })}
             className="w-full border p-2 rounded"
           />
         </div>
