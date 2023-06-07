@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
+import useTitle from "../../../hooks/useTitle";
 const MyClasses = () => {
   const [classes, setClasses] = useState([]);
+  useTitle("My classes");
 
   useEffect(() => {
     fetch("http://localhost:5000/classes")
