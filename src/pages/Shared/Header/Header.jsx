@@ -1,5 +1,9 @@
+import { useContext } from "react";
 import { Link } from "react-router-dom";
+import { AuthContent } from "../../../provider/AuthProvider";
 const Header = () => {
+  const { user, userLogout } = useContext(AuthContent);
+
   const navLink = (
     <>
       <li>
@@ -11,16 +15,27 @@ const Header = () => {
       <li>
         <Link to="/">Classes</Link>
       </li>
-      <li>
-        <Link to="/">Dashboard</Link>
-      </li>
-      <li>
-        <div className="avatar">
-          <div className="w-12 rounded-full">
-            <img src="/images/stock/photo-1534528741775-53994a69daeb.jpg" />
-          </div>
-        </div>
-      </li>
+      {user?.email ? (
+        <>
+          <li>
+            <Link to="/">Dashboard</Link>
+          </li>
+          <li>
+            <Link onClick={userLogout}>Logout</Link>
+          </li>
+          <li>
+            <div className="avatar">
+              <div className="w-12 rounded-full">
+                <img src={user?.photoURL} />
+              </div>
+            </div>
+          </li>
+        </>
+      ) : (
+        <li>
+          <Link to="/login">Login</Link>
+        </li>
+      )}
     </>
   );
   return (
