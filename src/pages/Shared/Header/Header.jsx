@@ -1,27 +1,28 @@
 import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { AuthContent } from "../../../provider/AuthProvider";
+import ActiveLink from "../../../components/ActiveLink";
 const Header = () => {
   const { user, userLogout } = useContext(AuthContent);
 
   const navLink = (
     <>
       <li>
-        <Link to="/">Home</Link>
+        <ActiveLink to="/">Home</ActiveLink>
       </li>
       <li>
-        <Link to="/instructors">Instructors</Link>
+        <ActiveLink to="/instructors">Instructors</ActiveLink>
       </li>
       <li>
-        <Link to="/classes">Classes</Link>
+        <ActiveLink to="/classes">Classes</ActiveLink>
       </li>
       {user?.email ? (
         <>
           <li>
-            <Link to="/">Dashboard</Link>
+            <ActiveLink to="/">Dashboard</ActiveLink>
           </li>
           <li>
-            <Link onClick={userLogout}>Logout</Link>
+            <ActiveLink onClick={userLogout}>Logout</ActiveLink>
           </li>
           <li>
             <div className="avatar">
@@ -33,7 +34,7 @@ const Header = () => {
         </>
       ) : (
         <li>
-          <Link to="/login">Login</Link>
+          <ActiveLink to="/login">Login</ActiveLink>
         </li>
       )}
     </>

@@ -1,16 +1,19 @@
-import { Outlet, Link } from "react-router-dom";
+import { Outlet } from "react-router-dom";
+import ActiveLink from "../components/ActiveLink";
 
 const InstructorLayout = () => {
   const navLink = (
     <>
       <li>
-        <Link to="/dashboard/instructors">Dashboard</Link>
+        <ActiveLink option={true} to="/dashboard/instructors">
+          Dashboard
+        </ActiveLink>
       </li>
       <li>
-        <Link to="addClass">Add Class</Link>
+        <ActiveLink to="addClass">Add Class</ActiveLink>
       </li>
       <li>
-        <Link to="myClasses">My Classes</Link>
+        <ActiveLink to="myClasses">My Classes</ActiveLink>
       </li>
     </>
   );

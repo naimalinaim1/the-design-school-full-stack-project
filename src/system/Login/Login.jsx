@@ -11,7 +11,8 @@ const Login = () => {
   const { userLogin, googleLogin } = useContext(AuthContent);
   const navigate = useNavigate();
   const location = useLocation();
-  const from = location.state?.from || "/";
+  const from = location.state?.from?.pathname || "/";
+
   // change title
   useTitle("Login");
 
@@ -29,7 +30,7 @@ const Login = () => {
     userLogin(data.email, data.password)
       .then(() => {
         // redirect home page
-        navigate("/");
+        navigate(from);
       })
       .catch((err) => setError(err.message));
   };

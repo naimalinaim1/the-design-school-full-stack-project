@@ -18,6 +18,7 @@ import StudentLayout from "../layouts/StudentLayout";
 import StudentDashboard from "../pages/Dashboard/StudentDashboard/StudentDashboard";
 import SelectedClasses from "../pages/Dashboard/StudentDashboard/SelectedClasses";
 import MyEnrolledClasses from "../pages/Dashboard/StudentDashboard/MyEnrolledClasses";
+import PrivateRoute from "./PrivateRoute";
 
 const router = createBrowserRouter([
   {
@@ -48,7 +49,11 @@ const router = createBrowserRouter([
       // student dashboard
       {
         path: "/dashboard/student",
-        element: <StudentLayout />,
+        element: (
+          <PrivateRoute>
+            <StudentLayout />
+          </PrivateRoute>
+        ),
         children: [
           {
             path: "",
@@ -67,7 +72,11 @@ const router = createBrowserRouter([
       // Instructor dashboard
       {
         path: "/dashboard/instructors",
-        element: <InstructorLayout />,
+        element: (
+          <PrivateRoute>
+            <InstructorLayout />
+          </PrivateRoute>
+        ),
         children: [
           {
             path: "",
@@ -86,7 +95,11 @@ const router = createBrowserRouter([
       // Admin dashboard
       {
         path: "/dashboard/admin",
-        element: <AdminLayout />,
+        element: (
+          <PrivateRoute>
+            <AdminLayout />
+          </PrivateRoute>
+        ),
         children: [
           {
             path: "",
