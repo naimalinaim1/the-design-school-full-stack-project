@@ -1,4 +1,3 @@
-// import { useState } from "react";
 import { useContext } from "react";
 import useTitle from "../../../hooks/useTitle";
 import { useForm } from "react-hook-form";
@@ -18,6 +17,8 @@ const AddClass = () => {
     data.price = parseFloat(parseFloat(data.price).toFixed(2));
     data.seats = parseInt(data.seats);
     data.status = "pending";
+    data.enrolled = 0;
+    data.feedback = "";
 
     // create a class
     fetch("http://localhost:5000/classes", {
@@ -36,7 +37,7 @@ const AddClass = () => {
 
   return (
     <div className="md:w-[70%] mt-10 mb-28 mx-auto shadow-xl p-12 rounded-xl">
-      <h1 className="text-2xl font-bold mb-4">Product Details</h1>
+      <h1 className="text-2xl font-bold mb-4">Class Details</h1>
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
         <div>
           <label htmlFor="className" className="block mb-2">
