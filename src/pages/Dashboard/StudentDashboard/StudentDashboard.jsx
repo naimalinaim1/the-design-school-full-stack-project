@@ -16,7 +16,12 @@ const StudentDashboard = () => {
 
   return (
     <div>
-      <h2>Student Dashboard</h2>
+      <h2 className="text-4xl font-bold text-center mb-6 mt-10">
+        Student Dashboard
+      </h2>
+      <div className="flex justify-center mb-20">
+        <img src="https://i.ibb.co/zJCXH7K/2023-06-10-7-copy.jpg" alt="" />
+      </div>
     </div>
   );
 };
