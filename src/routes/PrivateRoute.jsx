@@ -18,11 +18,6 @@ const PrivateRoute = ({ children }) => {
     return children;
   }
 
-  //   TODO: user email is empty
-  if (!user?.email) {
-    return children;
-  }
-
   return <Navigate to="/login" state={{ from: location }} />;
 };
 

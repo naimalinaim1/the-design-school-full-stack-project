@@ -54,6 +54,21 @@ const AuthProvider = ({ children }) => {
   // get current user
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
+      const email = user?.email;
+      if (email) {
+        const data = {
+          email,
+          role: "student",
+        };
+
+        fetch(`http://localhost:5000/users`, {
+          method: "post",
+          headers: { "content-type": "application/json" },
+          body: JSON.stringify(data),
+        })
+          .then((res) => res.json())
+          .then(() => {});
+      }
       setLoading(false);
       setUser(user);
     });

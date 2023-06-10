@@ -1,9 +1,21 @@
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { AuthContent } from "../../../provider/AuthProvider";
 import ActiveLink from "../../../components/ActiveLink";
 const Header = () => {
   const { user, userLogout } = useContext(AuthContent);
+  const [dashboardLink, setDashboardLink] = useState("student");
+
+  useEffect(() => {
+    if (user?.email) {
+      const getRole = async () => {
+        const res = await fetch(`http://localhost:5000/users/${user.email}`);
+        const data = await res.json();
+        setDashboardLink(data.role);
+      };
+      getRole();
+    }
+  }, [user?.email]);
 
   const navLink = (
     <>
@@ -19,7 +31,9 @@ const Header = () => {
       {user?.email ? (
         <>
           <li>
-            <ActiveLink to="/dashboard/instructors">Dashboard</ActiveLink>
+            <ActiveLink to={`/dashboard/${dashboardLink}`}>
+              Dashboard
+            </ActiveLink>
           </li>
           <li>
             <p className="cursor-pointer" onClick={userLogout}>

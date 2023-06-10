@@ -71,7 +71,7 @@ const router = createBrowserRouter([
       },
       // Instructor dashboard
       {
-        path: "/dashboard/instructors",
+        path: "/dashboard/instructor",
         element: (
           <PrivateRoute>
             <InstructorLayout />
