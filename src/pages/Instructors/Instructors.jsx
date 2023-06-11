@@ -7,7 +7,9 @@ const Instructors = () => {
   const [instructors, setInstructors] = useState([]);
 
   useEffect(() => {
-    setInstructors(["", "", "", "", "", "", "", ""]);
+    fetch("http://localhost:5000/instructorUsers")
+      .then((res) => res.json())
+      .then((data) => setInstructors(data));
   }, []);
 
   return (
@@ -29,9 +31,9 @@ const Instructors = () => {
             <div className="card-body">
               <h2 className="card-title">{instructor?.name}</h2>
               <p>{instructor?.email}</p>
-              <div className="card-actions justify-end">
-                <button className="btn">View Details</button>
-              </div>
+              <p>
+                Type: <strong>Instructor</strong>
+              </p>
             </div>
           </div>
         ))}
