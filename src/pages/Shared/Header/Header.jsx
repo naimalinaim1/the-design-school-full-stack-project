@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { AuthContent } from "../../../provider/AuthProvider";
 import ActiveLink from "../../../components/ActiveLink";
 import { Fade } from "react-awesome-reveal";
+import axios from "axios";
 const Header = () => {
   const { user, userLogout } = useContext(AuthContent);
   const [dashboardLink, setDashboardLink] = useState("student");
@@ -10,10 +11,10 @@ const Header = () => {
   useEffect(() => {
     if (user?.email) {
       const getRole = async () => {
-        const res = await fetch(
+        const res = await axios.get(
           `https://final-project-12-server.vercel.app/users/${user.email}`
         );
-        const data = await res.json();
+        const data = res.data;
         setDashboardLink(data.role);
       };
       getRole();

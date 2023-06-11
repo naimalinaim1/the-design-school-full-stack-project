@@ -1,3 +1,4 @@
+import axios from "axios";
 import useTitle from "../../hooks/useTitle";
 import { useState, useEffect } from "react";
 
@@ -7,9 +8,11 @@ const Instructors = () => {
   const [instructors, setInstructors] = useState([]);
 
   useEffect(() => {
-    fetch("https://final-project-12-server.vercel.app/instructorUsers")
-      .then((res) => res.json())
-      .then((data) => setInstructors(data));
+    const res = axios.get(
+      "https://final-project-12-server.vercel.app/instructorUsers"
+    );
+    const data = res.data;
+    setInstructors(data);
   }, []);
 
   return (
