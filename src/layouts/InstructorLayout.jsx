@@ -5,7 +5,7 @@ const InstructorLayout = () => {
   const navLink = (
     <>
       <li>
-        <ActiveLink option={true} to="/dashboard/instructors">
+        <ActiveLink option={true} to="/dashboard/instructor">
           Dashboard
         </ActiveLink>
       </li>

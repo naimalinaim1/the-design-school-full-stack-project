@@ -55,9 +55,11 @@ const AuthProvider = ({ children }) => {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       const email = user?.email;
-      if (email) {
+      if (email && user?.photoURL) {
         const data = {
           email,
+          image: user?.photoURL,
+          name: user?.displayName,
           role: "student",
         };
 
