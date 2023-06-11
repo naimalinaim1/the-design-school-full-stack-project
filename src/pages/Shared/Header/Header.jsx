@@ -20,8 +20,21 @@ const Header = () => {
     }
   }, [user?.email]);
 
+  const selectMode = (e) => {
+    const mode = e.target.value;
+
+    localStorage.setItem("mode", mode);
+  };
+
   const navLink = (
     <>
+      <li>
+        <select onChange={selectMode} className="select w-full max-w-xs">
+          <option value="">Theme</option>
+          <option value="light">Light</option>
+          <option value="dark">Dark</option>
+        </select>
+      </li>
       <li>
         <ActiveLink to="/">
           <Fade cascade damping={0.1}>
@@ -104,8 +117,8 @@ const Header = () => {
             The Design School
           </Link>
         </div>
-        <div className="navbar-end hidden lg:flex">
-          <ul className="flex items-center gap-5 px-1 text-lg font-semibold">
+        <div className="hidden lg:flex">
+          <ul className="flex items-center gap-4 px-1 text-lg font-semibold">
             {navLink}
           </ul>
         </div>
