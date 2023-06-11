@@ -13,8 +13,7 @@ const AdminDashboard = () => {
         `https://final-project-12-server.vercel.app/users/${user.email}`
       );
       const data = await res.json();
-      // TODO: check admin role
-      if (data.role == "admin") navigate("/login");
+      if (data.role !== "admin") navigate("/login");
     };
     checkAdmin();
   }, [navigate, user.email]);

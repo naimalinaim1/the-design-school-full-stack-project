@@ -1,19 +1,30 @@
 import { Outlet } from "react-router-dom";
 import ActiveLink from "../components/ActiveLink";
+import { Fade } from "react-awesome-reveal";
 
 const AdminLayout = () => {
   const navLink = (
     <>
       <li>
         <ActiveLink option={true} to="/dashboard/admin">
-          Dashboard
+          <Fade cascade damping={0.1}>
+            Dashboard
+          </Fade>
         </ActiveLink>
       </li>
       <li>
-        <ActiveLink to="manageClasses">Manage Classes</ActiveLink>
+        <ActiveLink to="manageClasses">
+          <Fade cascade damping={0.1}>
+            Manage Classes
+          </Fade>
+        </ActiveLink>
       </li>
       <li>
-        <ActiveLink to="manageUsers">Manage Users</ActiveLink>
+        <ActiveLink to="manageUsers">
+          <Fade cascade damping={0.1}>
+            Manage Users
+          </Fade>
+        </ActiveLink>
       </li>
     </>
   );

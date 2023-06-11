@@ -9,6 +9,7 @@ const AllClasses = () => {
   const { user } = useContext(AuthContent);
   const navigate = useNavigate();
   const location = useLocation();
+  const [role, setRole] = useState("");
 
   useTitle("All Classes");
 
@@ -16,7 +17,16 @@ const AllClasses = () => {
     fetch("https://final-project-12-server.vercel.app/classes")
       .then((res) => res.json())
       .then((data) => setClasses(data));
-  }, []);
+
+    const checkAdmin = async () => {
+      const res = await fetch(
+        `https://final-project-12-server.vercel.app/users/${user?.email || "@"}`
+      );
+      const data = await res.json();
+      setRole(data?.role);
+    };
+    checkAdmin();
+  }, [user?.email]);
 
   const handleSelectCourse = (id) => {
     const email = user?.email;
@@ -75,7 +85,11 @@ const AllClasses = () => {
                 <button
                   onClick={() => handleSelectCourse(item?._id)}
                   className="btn"
-                  disabled={item?.seats <= 0}
+                  disabled={
+                    item?.seats <= 0 ||
+                    role === "admin" ||
+                    role === "instructor"
+                  }
                 >
                   Select Course
                 </button>

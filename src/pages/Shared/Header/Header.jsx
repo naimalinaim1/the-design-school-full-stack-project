@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { AuthContent } from "../../../provider/AuthProvider";
 import ActiveLink from "../../../components/ActiveLink";
+import { Fade } from "react-awesome-reveal";
 const Header = () => {
   const { user, userLogout } = useContext(AuthContent);
   const [dashboardLink, setDashboardLink] = useState("student");
@@ -22,19 +23,33 @@ const Header = () => {
   const navLink = (
     <>
       <li>
-        <ActiveLink to="/">Home</ActiveLink>
+        <ActiveLink to="/">
+          <Fade cascade damping={0.1}>
+            Home
+          </Fade>
+        </ActiveLink>
       </li>
       <li>
-        <ActiveLink to="/instructors">Instructors</ActiveLink>
+        <ActiveLink to="/instructors">
+          <Fade cascade damping={0.1}>
+            Instructors
+          </Fade>
+        </ActiveLink>
       </li>
       <li>
-        <ActiveLink to="/classes">Classes</ActiveLink>
+        <ActiveLink to="/classes">
+          <Fade cascade damping={0.1}>
+            Classes
+          </Fade>
+        </ActiveLink>
       </li>
       {user?.email ? (
         <>
           <li>
             <ActiveLink to={`/dashboard/${dashboardLink}`}>
-              Dashboard
+              <Fade cascade damping={0.1}>
+                Dashboard
+              </Fade>
             </ActiveLink>
           </li>
           <li>

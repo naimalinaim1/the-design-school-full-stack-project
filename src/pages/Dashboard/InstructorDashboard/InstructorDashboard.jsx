@@ -12,8 +12,7 @@ const InstructorDashboard = () => {
         `https://final-project-12-server.vercel.app/users/${user.email}`
       );
       const data = await res.json();
-      // TODO: role check !
-      if (data.role == "instructor") navigate("/login");
+      if (data.role !== "instructor") navigate("/login");
     };
     checkAdmin();
   }, [navigate, user.email]);
