@@ -69,7 +69,10 @@ const ManageUsers = () => {
                     onClick={() =>
                       handleMakeInstructorAdmin(user?._id, "instructor")
                     }
-                    disabled={user?.role === "instructor"}
+                    disabled={
+                      user?.role === "instructor" ||
+                      user?.email === "admin@school.com"
+                    }
                     className="btn-xs btn btn-info mr-1"
                   >
                     Make Instructor
