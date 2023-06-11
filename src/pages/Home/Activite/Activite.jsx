@@ -75,7 +75,7 @@ const Activite = () => {
       </p>
       <div className="flex justify-center mb-20">
         <BarChart
-          width={500}
+          width={450}
           height={300}
           data={data}
           margin={{

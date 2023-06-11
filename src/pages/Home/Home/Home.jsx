@@ -10,6 +10,9 @@ const Home = () => {
 
   return (
     <>
+      <div>
+        <img src="https://i.ibb.co/pj1jpvy/15694384-5660768.jpg" alt="" />
+      </div>
       <Banner />
       <Classes />
       <PopularInstuctor />

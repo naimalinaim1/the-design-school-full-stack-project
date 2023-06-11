@@ -17,7 +17,7 @@ const PopularInstuctor = () => {
         obcaecati reiciendis adipisci error delectus quisquam, tempore
         consequatur maxime quidem veniam consectetur culpa a expedita?
       </p>
-      <div className="grid grid-cols-3 gap-10 w-[80%] mx-auto">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10 w-[80%] mx-auto">
         {instructors?.map((instructor, index) => (
           <div key={index} className="card bg-base-100 shadow-xl">
             <figure className="h-[230px]">
