@@ -70,6 +70,8 @@ const AuthProvider = ({ children }) => {
         })
           .then((res) => res.json())
           .then(() => {});
+      } else {
+        console.log("auth provider", user);
       }
       setLoading(false);
       setUser(user);

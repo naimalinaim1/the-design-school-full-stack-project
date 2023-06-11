@@ -6,7 +6,7 @@ import { AuthContent } from "../../provider/AuthProvider";
 
 const Register = () => {
   const [error, setError] = useState("");
-  const { createUser, updateUser } = useContext(AuthContent);
+  const { createUser, updateUser, userLogout } = useContext(AuthContent);
   const navigate = useNavigate();
   // change title
   useTitle("Register");
@@ -25,7 +25,8 @@ const Register = () => {
         updateUser(data.name, data.photoUrl)
           .then(() => {
             // redirect home page
-            navigate("/");
+            userLogout();
+            navigate("/login");
           })
           .catch((err) => setError(err.message));
       })

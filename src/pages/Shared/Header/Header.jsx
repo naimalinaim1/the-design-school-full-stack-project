@@ -14,8 +14,10 @@ const Header = () => {
         const res = await axios.get(
           `https://final-project-12-server.vercel.app/users/${user.email}`
         );
-        const data = res.data;
-        setDashboardLink(data.role);
+        const data = await res.data;
+        if (data.role) {
+          setDashboardLink(data.role);
+        }
       };
       getRole();
     }
