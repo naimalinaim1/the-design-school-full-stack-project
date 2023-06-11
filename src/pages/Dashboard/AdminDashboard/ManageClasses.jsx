@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import useTitle from "../../../hooks/useTitle";
+import Swal from "sweetalert2";
 
 const ManageClasses = () => {
   const [classes, setClasses] = useState([]);
@@ -10,6 +11,25 @@ const ManageClasses = () => {
       .then((res) => res.json())
       .then((data) => setClasses(data));
   }, [classes]);
+
+  const changeStatus = (id, status) => {
+    const data = { id, status: status };
+
+    fetch("http://localhost:5000/classes", {
+      method: "PATCH",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify(data),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.modifiedCount > 0) {
+          Swal.fire("Good Job!", "Status update successfully", "success");
+          fetch("http://localhost:5000/classes")
+            .then((res) => res.json())
+            .then((data) => setClasses(data));
+        }
+      });
+  };
 
   return (
     <div className="mt-8 mb-20">
@@ -31,25 +51,35 @@ const ManageClasses = () => {
             </tr>
           </thead>
           <tbody>
-            {["", "", ""].map((i, idx) => (
+            {classes.map((i, idx) => (
               <tr key={idx}>
-                <td>1</td>
+                <td>{idx + 1}</td>
                 <td>
                   <div className="avatar">
                     <div className="mask mask-squircle w-20 h-20">
-                      <img src={""} alt="image" />
+                      <img src={i.image} alt="image" />
                     </div>
                   </div>
                 </td>
-                <td>class name</td>
-                <td>Instructor name</td>
-                <td>Instructor email</td>
-                <td>120</td>
-                <td>$120</td>
-                <td>pending</td>
+                <td>{i.className}</td>
+                <td>{i.instructorName}</td>
+                <td>{i.instructorEmail}</td>
+                <td>{i.enrolled}</td>
+                <td>{i.price}</td>
+                <td>{i.status}</td>
                 <td>
-                  <button className="btn-xs btn btn-warning">Approve</button>
-                  <button className="btn-xs btn btn-error mx-1">Deny</button>
+                  <button
+                    className="btn-xs btn btn-warning"
+                    onClick={() => changeStatus(i._id, "approve")}
+                  >
+                    Approve
+                  </button>
+                  <button
+                    className="btn-xs btn btn-error mx-1"
+                    onClick={() => changeStatus(i._id, "deny")}
+                  >
+                    Deny
+                  </button>
                   <button className="btn-xs btn btn-neutral">
                     send Feedback
                   </button>
