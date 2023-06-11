@@ -13,7 +13,7 @@ const AllClasses = () => {
   useTitle("All Classes");
 
   useEffect(() => {
-    fetch("http://localhost:5000/classes")
+    fetch("https://final-project-12-server.vercel.app/classes")
       .then((res) => res.json())
       .then((data) => setClasses(data));
   }, []);
@@ -22,7 +22,7 @@ const AllClasses = () => {
     const email = user?.email;
     if (email) {
       const data = { email, classId: id };
-      fetch("http://localhost:5000/selectCourse", {
+      fetch("https://final-project-12-server.vercel.app/selectCourse", {
         method: "POST",
         headers: { "content-type": "application/json" },
         body: JSON.stringify(data),

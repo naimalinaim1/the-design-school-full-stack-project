@@ -63,7 +63,7 @@ const AuthProvider = ({ children }) => {
           role: "student",
         };
 
-        fetch(`http://localhost:5000/users`, {
+        fetch(`https://final-project-12-server.vercel.app/users`, {
           method: "post",
           headers: { "content-type": "application/json" },
           body: JSON.stringify(data),

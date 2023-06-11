@@ -7,7 +7,7 @@ const ManageClasses = () => {
   useTitle("My classes");
 
   useEffect(() => {
-    fetch("http://localhost:5000/classes")
+    fetch("https://final-project-12-server.vercel.app/classes")
       .then((res) => res.json())
       .then((data) => setClasses(data));
   }, [classes]);
@@ -15,7 +15,7 @@ const ManageClasses = () => {
   const changeStatus = (id, status) => {
     const data = { id, status: status };
 
-    fetch("http://localhost:5000/classes", {
+    fetch("https://final-project-12-server.vercel.app/classes", {
       method: "PATCH",
       headers: { "content-type": "application/json" },
       body: JSON.stringify(data),
@@ -24,7 +24,7 @@ const ManageClasses = () => {
       .then((data) => {
         if (data.modifiedCount > 0) {
           Swal.fire("Good Job!", "Status update successfully", "success");
-          fetch("http://localhost:5000/classes")
+          fetch("https://final-project-12-server.vercel.app/classes")
             .then((res) => res.json())
             .then((data) => setClasses(data));
         }

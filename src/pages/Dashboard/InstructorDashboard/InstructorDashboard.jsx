@@ -8,7 +8,9 @@ const InstructorDashboard = () => {
   const { user } = useUser();
   useEffect(() => {
     const checkAdmin = async () => {
-      const res = await fetch(`http://localhost:5000/users/${user.email}`);
+      const res = await fetch(
+        `https://final-project-12-server.vercel.app/users/${user.email}`
+      );
       const data = await res.json();
       // TODO: role check !
       if (data.role == "instructor") navigate("/login");

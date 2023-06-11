@@ -5,7 +5,7 @@ const ManageUsers = () => {
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/users")
+    fetch("https://final-project-12-server.vercel.app/users")
       .then((res) => res.json())
       .then((data) => setUsers(data));
   }, []);
@@ -16,7 +16,7 @@ const ManageUsers = () => {
       role: role,
     };
 
-    fetch("http://localhost:5000/users", {
+    fetch("https://final-project-12-server.vercel.app/users", {
       method: "PATCH",
       headers: { "content-type": "application/json" },
       body: JSON.stringify(data),
@@ -29,7 +29,7 @@ const ManageUsers = () => {
             "Instructor role added successfully",
             "success"
           );
-          fetch("http://localhost:5000/users")
+          fetch("https://final-project-12-server.vercel.app/users")
             .then((res) => res.json())
             .then((data) => setUsers(data));
         }

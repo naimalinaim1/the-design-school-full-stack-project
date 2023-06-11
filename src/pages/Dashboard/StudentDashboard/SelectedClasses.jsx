@@ -10,7 +10,9 @@ const SelectedClasses = () => {
   useTitle("Selected Class");
 
   useEffect(() => {
-    fetch(`http://localhost:5000/selectCourse?email=${user?.email}`)
+    fetch(
+      `https://final-project-12-server.vercel.app/selectCourse?email=${user?.email}`
+    )
       .then((res) => res.json())
       .then((data) => setClasses(data));
   }, [user?.email]);
@@ -26,13 +28,15 @@ const SelectedClasses = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:5000/selectCourse/${id}`, {
+        fetch(`https://final-project-12-server.vercel.app/selectCourse/${id}`, {
           method: "DELETE",
         })
           .then((res) => res.json())
           .then((data) => {
             if (data?.deletedCount > 0) {
-              fetch(`http://localhost:5000/selectCourse?email=${user?.email}`)
+              fetch(
+                `https://final-project-12-server.vercel.app/selectCourse?email=${user?.email}`
+              )
                 .then((res) => res.json())
                 .then((data) => setClasses(data));
               Swal.fire(

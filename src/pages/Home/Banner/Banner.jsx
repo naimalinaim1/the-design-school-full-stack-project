@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 const Banner = () => {
   const [classes, setClasses] = useState([]);
   useEffect(() => {
-    fetch("http://localhost:5000/popularClasses")
+    fetch("https://final-project-12-server.vercel.app/popularClasses")
       .then((res) => res.json())
       .then((data) => setClasses(data));
   }, []);

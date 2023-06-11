@@ -4,13 +4,13 @@ const PopularInstuctor = () => {
   const [instructors, setInstructors] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/popularInstructorUsers")
+    fetch("https://final-project-12-server.vercel.app/popularInstructorUsers")
       .then((res) => res.json())
       .then((data) => setInstructors(data));
   }, []);
 
   return (
-    <div className="mt-32 mb-64">
+    <div className="mt-32 mb-32">
       <h2 className="text-4xl font-bold text-center mb-4">Top Instructor</h2>
       <p className="w-[60%] mx-auto text-center text-lg leading-7 text-gray-500 mb-10">
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia id

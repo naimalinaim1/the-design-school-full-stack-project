@@ -21,7 +21,7 @@ const AddClass = () => {
     data.feedback = "";
 
     // create a class
-    fetch("http://localhost:5000/classes", {
+    fetch("https://final-project-12-server.vercel.app/classes", {
       method: "POST",
       headers: { "content-type": "application/json" },
       body: JSON.stringify(data),

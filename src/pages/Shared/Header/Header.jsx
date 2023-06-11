@@ -9,7 +9,9 @@ const Header = () => {
   useEffect(() => {
     if (user?.email) {
       const getRole = async () => {
-        const res = await fetch(`http://localhost:5000/users/${user.email}`);
+        const res = await fetch(
+          `https://final-project-12-server.vercel.app/users/${user.email}`
+        );
         const data = await res.json();
         setDashboardLink(data.role);
       };
